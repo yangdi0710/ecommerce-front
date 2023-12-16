@@ -1,9 +1,16 @@
 import styled, { css } from "styled-components";
 
 const StyledButton = styled.button`
+  display: inline-flex;
+  align-items: center;
   border: 0;
-  padding: 5px 15px;
+  padding: 8px 15px;
   border-radius: 5px;
+  max-width: 100%;
+  svg {
+    height: 15px;
+    margin-right: 6px;
+  }
   &:hover {
     cursor: pointer;
   }
