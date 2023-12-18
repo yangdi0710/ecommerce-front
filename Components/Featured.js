@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Center from "./Center";
-import PrimaryBtn from "./Button";
 import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 
 const BgStyled = styled.div`
   color: #fff;
@@ -11,7 +11,8 @@ const BgStyled = styled.div`
 const Tittle = styled.h1`
   margin: 0;
   font-weight: normal;
-  font-size: 3rem;
+  font-size: 2.2rem;
+  text-transform: uppercase;
 `;
 
 const Desc = styled.p`
@@ -40,24 +41,21 @@ const Column = styled.div`
   align-items: center;
 `;
 
-export default function Featured() {
+export default function Featured({ product }) {
   return (
     <BgStyled>
       <Center>
         <ColumnWrapper>
           <Column>
             <div>
-              <Tittle>Pro Everywhere</Tittle>
+              <Tittle>{product.title}</Tittle>
               <Desc>
-                Esse do nisi ut aliqua sit adipisicing eu excepteur duis.
-                Cupidatat id pariatur irure ex laborum sit exercitation aute
-                deserunt ad cillum. Irure et eu dolore eu commodo sit ea eu amet
-                laboris aliqua
+                {product.description}
               </Desc>
               <ButtonWrapper>
-                <Button outline={1} white={1}>
+                <ButtonLink href={`/product/${product._id}`} outline={1} white={1}>
                   Read More
-                </Button>
+                </ButtonLink>
                 <Button primary>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
