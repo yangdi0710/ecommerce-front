@@ -9,7 +9,7 @@ export const ButtonStyle = css`
   max-width: 100%;
   text-decoration: none;
   svg {
-    height: 15px;
+    height: 18px;
     margin-right: 6px;
   }
   &:hover {
@@ -35,14 +35,29 @@ export const ButtonStyle = css`
     `}
   ${(props) =>
     props.primary &&
+    !props.outline &&
     css`
       background-color: #1f6eff;
-      border: 1px solid #1f6eff;
+      border-top: 1px solid #1f6eff;
+      padding-bottom: 10px;
       color: #fff;
       &:hover {
         opacity: 0.9;
       }
     `}
+    ${(props) =>
+      props.primary &&
+      props.outline &&
+      css`
+        background-color: transparent;
+        border: 1px solid #1f6eff;
+        padding: 6px 10px;
+        color: #1f6eff;
+        font-weight: 700;
+        &:hover {
+          opacity: 0.9;
+        }
+      `}
     ${(props) =>
     props.size === "large" &&
     css`

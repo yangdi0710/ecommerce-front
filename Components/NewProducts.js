@@ -4,8 +4,8 @@ import ProductBox from "./ProductBox";
 
 const ProductsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 32px;
   padding-top: 20px;
 `;
 
@@ -15,7 +15,7 @@ export default function NewProducts({ products }) {
       <ProductsGrid>
         {products?.length > 0 &&
           products.map((product, index) => (
-            <ProductBox key={product.title} {...product} />
+            <ProductBox key={index} {...product} />
           ))}
       </ProductsGrid>
     </Center>
