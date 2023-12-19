@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Button from "./Button";
 import CartIcon from "./icons/Cart";
+import Link from "next/link";
 
 const ProductWrapper = styled.div``;
 
-const WhiteBox = styled.div`
+const WhiteBox = styled(Link)`
   background-color: #fff;
   padding: 10px;
   height: 150px;
@@ -18,9 +19,12 @@ const WhiteBox = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled(Link)`
+  font-weight: 400;
   font-size: .9rem;
   margin: 0;
+  text-decoration: none;
+  color: inherit;
 `;
 
 const ProductInfoBox = styled.div`
@@ -34,20 +38,21 @@ const PriceRow = styled.div`
 `;
 
 const Price = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.5rem;
 `
 
 export default function ProductBox({ _id, title, description, price, images }) {
+  const uri = `/products/${_id}`
   return (
     <ProductWrapper>
-      <WhiteBox>
+      <WhiteBox href={uri}>
         <div>
           <img src={images[0]} alt="" />
         </div>
       </WhiteBox>
       <ProductInfoBox>
-        <Title>{title}</Title>
+        <Title href={uri}>{title}</Title>
         <PriceRow>
           <Price>${price}</Price>
           <div>

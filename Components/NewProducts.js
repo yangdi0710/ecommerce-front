@@ -9,9 +9,21 @@ const ProductsGrid = styled.div`
   padding-top: 20px;
 `;
 
+const Title = styled.h2`
+  display: inline-block;
+  width: 100%;
+  background-color: #a1b5d060;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 2rem;
+  margin: 20px 0 6px;
+  text-align: center;
+`;
+
 export default function NewProducts({ products }) {
   return (
     <Center>
+      <Title>New Arrivals</Title>
       <ProductsGrid>
         {products?.length > 0 &&
           products.map((product, index) => (

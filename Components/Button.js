@@ -1,3 +1,4 @@
+import { primary } from "@/lib/colors";
 import styled, { css } from "styled-components";
 
 export const ButtonStyle = css`
@@ -37,8 +38,8 @@ export const ButtonStyle = css`
     props.primary &&
     !props.outline &&
     css`
-      background-color: #1f6eff;
-      border-top: 1px solid #1f6eff;
+      background-color: ${primary};
+      border-top: 1px solid ${primary};
       padding-bottom: 10px;
       color: #fff;
       &:hover {
@@ -50,9 +51,10 @@ export const ButtonStyle = css`
       props.outline &&
       css`
         background-color: transparent;
-        border: 1px solid #1f6eff;
-        padding: 6px 10px;
-        color: #1f6eff;
+        border: 1px solid ${primary};
+        padding: 4px 8px;
+        color: ${primary};
+        font-size: 0.8rem;
         font-weight: 700;
         &:hover {
           opacity: 0.9;
