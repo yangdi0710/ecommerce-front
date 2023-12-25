@@ -9,7 +9,7 @@ const ProductsGrid = styled.div`
   padding-top: 20px;
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   display: inline-block;
   width: 100%;
   background-color: #a1b5d060;

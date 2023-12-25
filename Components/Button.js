@@ -17,6 +17,12 @@ export const ButtonStyle = css`
     cursor: pointer;
   }
   ${(props) =>
+    props.block &&
+    css`
+      display: block;
+      width: 100%;
+    `}
+  ${(props) =>
     props.white &&
     !props.outline &&
     css`
@@ -34,6 +40,27 @@ export const ButtonStyle = css`
         background-color: rgba(255, 255, 255, 0.1);
       }
     `}
+    ${(props) =>
+      props.black &&
+      !props.outline &&
+      css`
+        background-color: #000;
+        color: #fff;
+        &:hover {
+          opacity: 0.7;
+        }
+      `}
+    ${(props) =>
+      props.black &&
+      props.outline &&
+      css`
+        background-color: transparent;
+        color: #000;
+        border: 1px solid #000;
+        &:hover {
+          opacity: 0.7;
+        }
+      `}
   ${(props) =>
     props.primary &&
     !props.outline &&
@@ -47,19 +74,19 @@ export const ButtonStyle = css`
       }
     `}
     ${(props) =>
-      props.primary &&
-      props.outline &&
-      css`
-        background-color: transparent;
-        border: 1px solid ${primary};
-        padding: 4px 8px;
-        color: ${primary};
-        font-size: 0.8rem;
-        font-weight: 700;
-        &:hover {
-          opacity: 0.9;
-        }
-      `}
+    props.primary &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      border: 1px solid ${primary};
+      padding: 4px 8px;
+      color: ${primary};
+      font-size: 0.8rem;
+      font-weight: 700;
+      &:hover {
+        opacity: 0.9;
+      }
+    `}
     ${(props) =>
     props.size === "large" &&
     css`
