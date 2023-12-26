@@ -46,6 +46,7 @@ export const ButtonStyle = css`
       css`
         background-color: #000;
         color: #fff;
+        margin-top: 30px;
         &:hover {
           opacity: 0.7;
         }
@@ -57,6 +58,7 @@ export const ButtonStyle = css`
         background-color: transparent;
         color: #000;
         border: 1px solid #000;
+        margin-top: 30px;
         &:hover {
           opacity: 0.7;
         }
