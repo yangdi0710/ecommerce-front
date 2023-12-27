@@ -71,8 +71,19 @@ export default function CartPage() {
   function lessOfThisProduct(id) {
     removeProduct(id);
   }
-  function goToPayment(){
-    
+  async function goToPayment() {
+    const response = await axios.post('/api/checkout', {
+      name,
+      email,
+      city,
+      postalCode,
+      streetAddress,
+      country,
+      cartProducts,
+    });
+    if(response.data.url){
+      window.location = response.data.url;
+    }
   }
   let total = 0;
   for (const productId of cartProducts) {
@@ -178,12 +189,7 @@ export default function CartPage() {
                 name="country"
                 onChange={(e) => setCountry(e.target.value)}
               />
-              <input
-                type="hidden"
-                name="products"
-                value={cartProducts.join(",")}
-              />
-              <Button black={1} size={"large"} block={1} onClick={goToPayment} >
+              <Button black={1} size={"large"} block={1} onClick={goToPayment}>
                 Continue to payment
               </Button>
             </form>
