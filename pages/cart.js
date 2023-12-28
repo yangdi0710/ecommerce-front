@@ -1,5 +1,6 @@
 import Button from "@/Components/Button";
 import { CartContext } from "@/Components/CartContext";
+import Center from "@/Components/Center";
 import Header from "@/Components/Header";
 import Input from "@/Components/Input";
 import { Title } from "@/Components/NewProducts";
@@ -48,6 +49,7 @@ const CityHolders = styled.div`
 `;
 
 export default function CartPage() {
+  const [mounted, setMounted] = useState(false);
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
@@ -57,6 +59,9 @@ export default function CartPage() {
   const [streetAddress, setStressAddress] = useState("");
   const [country, setCountry] = useState("");
   useEffect(() => {
+    setMounted(true);
+  }, []);
+  useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
@@ -65,6 +70,7 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+  useEffect(() => {}, []);
   function moreOfThisProduct(id) {
     addProduct(id);
   }
@@ -72,7 +78,7 @@ export default function CartPage() {
     removeProduct(id);
   }
   async function goToPayment() {
-    const response = await axios.post('/api/checkout', {
+    const response = await axios.post("/api/checkout", {
       name,
       email,
       city,
@@ -81,7 +87,7 @@ export default function CartPage() {
       country,
       cartProducts,
     });
-    if(response.data.url){
+    if (response.data.url) {
       window.location = response.data.url;
     }
   }
@@ -90,60 +96,81 @@ export default function CartPage() {
     const price = products.find((p) => p._id === productId)?.price || 0;
     total += price;
   }
+  if (global.window?.location?.href.includes("success")) {
+    return (
+      mounted && (
+        <>
+          <Header />
+          <Center>
+            <ColumnsWrapper>
+              <Box>
+                <h1>Thanks</h1>
+                <p>Thank you</p>
+              </Box>
+            </ColumnsWrapper>
+          </Center>
+        </>
+      )
+    );
+  }
   return (
     <>
       <Header />
-      <ColumnsWrapper>
-        <Box>
-          <Title>Cart</Title>
-          {!cartProducts?.length && <div>Your cart is empty</div>}
-          {products?.length > 0 && (
-            <Table>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product, index) => (
-                  <tr key={index}>
-                    <ProductInfoCell>
-                      <ProductImageBox>
-                        <img src={product.images[0]} alt="" />
-                      </ProductImageBox>
-                      {product.title}
-                    </ProductInfoCell>
-                    <td>
-                      <Button onClick={() => lessOfThisProduct(product._id)}>
-                        -
-                      </Button>
-                      <QuantityLabel>
-                        {cartProducts.filter((id) => id === product._id).length}
-                      </QuantityLabel>
-                      <Button onClick={() => moreOfThisProduct(product._id)}>
-                        +
-                      </Button>
-                    </td>
-                    <td>
-                      {cartProducts.filter((id) => id === product._id).length *
-                        product.price}
-                    </td>
-                  </tr>
-                ))}
-                <tr>
-                  <td>Total Price:</td>
-                  <td></td>
-                  <td>{total}</td>
-                </tr>
-              </tbody>
-            </Table>
-          )}
-        </Box>
-        {!!cartProducts?.length && (
+      <Center>
+        <ColumnsWrapper>
           <Box>
-            <h2>Order Information</h2>
+            <Title>Cart</Title>
+            {!cartProducts?.length && <div>Your cart is empty</div>}
+            {products?.length > 0 && (
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product, index) => (
+                    <tr key={index}>
+                      <ProductInfoCell>
+                        <ProductImageBox>
+                          <img src={product.images[0]} alt="" />
+                        </ProductImageBox>
+                        {product.title}
+                      </ProductInfoCell>
+                      <td>
+                        <Button onClick={() => lessOfThisProduct(product._id)}>
+                          -
+                        </Button>
+                        <QuantityLabel>
+                          {
+                            cartProducts.filter((id) => id === product._id)
+                              .length
+                          }
+                        </QuantityLabel>
+                        <Button onClick={() => moreOfThisProduct(product._id)}>
+                          +
+                        </Button>
+                      </td>
+                      <td>
+                        {cartProducts.filter((id) => id === product._id)
+                          .length * product.price}
+                      </td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td>Total Price:</td>
+                    <td></td>
+                    <td>{total}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            )}
+          </Box>
+          {!!cartProducts?.length && (
+            <Box>
+              <h2>Order Information</h2>
               <Input
                 type="text"
                 placeholder="Name"
@@ -191,9 +218,10 @@ export default function CartPage() {
               <Button black={1} size={"large"} block={1} onClick={goToPayment}>
                 Continue to payment
               </Button>
-          </Box>
-        )}
-      </ColumnsWrapper>
+            </Box>
+          )}
+        </ColumnsWrapper>
+      </Center>
     </>
   );
 }
