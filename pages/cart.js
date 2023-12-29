@@ -18,7 +18,7 @@ const ColumnsWrapper = styled.div`
 const Box = styled.div`
   background-color: #fff;
   border-radius: 4px;
-  padding: 30px;
+  padding: 20px;
   font-size: 1.2rem;
 `;
 
@@ -49,8 +49,8 @@ const CityHolders = styled.div`
 `;
 
 export default function CartPage() {
-  const [mounted, setMounted] = useState(false);
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -58,9 +58,7 @@ export default function CartPage() {
   const [postalCode, setPostalCode] = useState("");
   const [streetAddress, setStressAddress] = useState("");
   const [country, setCountry] = useState("");
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [isSuccess, setIsSuccess] = useState(false);
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
@@ -70,6 +68,15 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    if (window?.location.href.includes("success")) {
+      clearCart();
+      setIsSuccess(true);
+    }
+  }, []);
   useEffect(() => {}, []);
   function moreOfThisProduct(id) {
     addProduct(id);
@@ -96,21 +103,19 @@ export default function CartPage() {
     const price = products.find((p) => p._id === productId)?.price || 0;
     total += price;
   }
-  if (global.window?.location?.href.includes("success")) {
+  if (isSuccess) {
     return (
-      mounted && (
-        <>
-          <Header />
-          <Center>
-            <ColumnsWrapper>
-              <Box>
-                <h1>Thanks</h1>
-                <p>Thank you</p>
-              </Box>
-            </ColumnsWrapper>
-          </Center>
-        </>
-      )
+      <>
+        <Header />
+        <Center>
+          <ColumnsWrapper>
+            <Box>
+              <h1>Thanks for your order!</h1>
+              <p>We will email to you when order will be sent.</p>
+            </Box>
+          </ColumnsWrapper>
+        </Center>
+      </>
     );
   }
   return (
@@ -140,7 +145,10 @@ export default function CartPage() {
                         {product.title}
                       </ProductInfoCell>
                       <td>
-                        <Button onClick={() => lessOfThisProduct(product._id)}>
+                        <Button
+                          size={"small"}
+                          onClick={() => lessOfThisProduct(product._id)}
+                        >
                           -
                         </Button>
                         <QuantityLabel>
@@ -149,7 +157,10 @@ export default function CartPage() {
                               .length
                           }
                         </QuantityLabel>
-                        <Button onClick={() => moreOfThisProduct(product._id)}>
+                        <Button
+                          size={"small"}
+                          onClick={() => moreOfThisProduct(product._id)}
+                        >
                           +
                         </Button>
                       </td>

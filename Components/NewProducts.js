@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Center from "./Center";
-import ProductBox from "./ProductBox";
 
 const ProductsGrid = styled.div`
   display: grid;
@@ -24,12 +23,7 @@ export default function NewProducts({ products }) {
   return (
     <Center>
       <Title>New Arrivals</Title>
-      <ProductsGrid>
-        {products?.length > 0 &&
-          products.map((product, index) => (
-            <ProductBox key={index} {...product} />
-          ))}
-      </ProductsGrid>
+      <ProductsGrid products={products} />
     </Center>
   );
 }

@@ -41,28 +41,28 @@ export const ButtonStyle = css`
       }
     `}
     ${(props) =>
-      props.black &&
-      !props.outline &&
-      css`
-        background-color: #000;
-        color: #fff;
-        margin-top: 30px;
-        &:hover {
-          opacity: 0.7;
-        }
-      `}
+    props.black &&
+    !props.outline &&
+    css`
+      background-color: #000;
+      color: #fff;
+      margin-top: 30px;
+      &:hover {
+        opacity: 0.7;
+      }
+    `}
     ${(props) =>
-      props.black &&
-      props.outline &&
-      css`
-        background-color: transparent;
-        color: #000;
-        border: 1px solid #000;
-        margin-top: 30px;
-        &:hover {
-          opacity: 0.7;
-        }
-      `}
+    props.black &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      color: #000;
+      border: 1px solid #000;
+      margin-top: 30px;
+      &:hover {
+        opacity: 0.7;
+      }
+    `}
   ${(props) =>
     props.primary &&
     !props.outline &&
@@ -94,6 +94,14 @@ export const ButtonStyle = css`
     css`
       font-size: 1.2rem;
       padding: 10px 15px;
+    `}
+    ${(props) =>
+    props.size === "small" &&
+    css`
+      width: 8px;
+      font-size: 1rem;
+      padding: 4px 12px;
+      justify-content: center;
     `}
 `;
 

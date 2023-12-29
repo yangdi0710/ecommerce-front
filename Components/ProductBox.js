@@ -23,7 +23,7 @@ const WhiteBox = styled(Link)`
 
 const Title = styled(Link)`
   font-weight: 400;
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin: 0;
   text-decoration: none;
   color: inherit;
@@ -42,11 +42,11 @@ const PriceRow = styled.div`
 const Price = styled.div`
   font-weight: 500;
   font-size: 1.5rem;
-`
+`;
 
 export default function ProductBox({ _id, title, description, price, images }) {
-  const {addProduct} = useContext(CartContext);
-  const url = `/products/${_id}`
+  const { addProduct } = useContext(CartContext);
+  const url = `/products/${_id}`;
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
