@@ -1,6 +1,7 @@
 import Center from "@/Components/Center";
 import Header from "@/Components/Header";
-import StyledTitle from "@/Components/Title";
+import ProductImages from "@/Components/ProductImages";
+import StyledTitle, { Title } from "@/Components/Title";
 import WhiteBox from "@/Components/WhiteBox";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Products";
@@ -13,14 +14,6 @@ const ColWrapper = styled.div`
   margin-top: 20px;
 `;
 
-const Title = styled.h1`
-  display: block;
-  font-size: 1.5rem;
-  padding-bottom: 10px;
-`;
-
-
-
 export default function ProductPage({ product }) {
   return (
     <>
@@ -29,7 +22,7 @@ export default function ProductPage({ product }) {
         <StyledTitle>Product Details</StyledTitle>
         <ColWrapper>
           <WhiteBox>
-            <img style={{maxWidth: '100%'}} src={product.images?.[0]} alt="" />
+            <ProductImages images={product.images}/>
           </WhiteBox>
           <div>
             <Title>{product.title}</Title>

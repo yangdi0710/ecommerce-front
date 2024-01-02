@@ -11,4 +11,11 @@ const StyledTitle = styled.h1`
   text-align: center;
 `;
 
+const Title = styled.h1`
+  display: block;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+`;
+
 export default StyledTitle;
+export { Title }
