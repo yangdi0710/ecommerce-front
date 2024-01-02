@@ -8,13 +8,13 @@ const StyledProductsGrid = styled.div`
   padding-top: 20px;
 `;
 
-export default function ProductsGrid({products}){
-    return (
-        <StyledProductsGrid>
-            {products?.length > 0 &&
-          products.map((product, index) => (
-            <ProductBox key={index} {...product} />
-          ))}
-        </StyledProductsGrid>
-    )
+export default function ProductsGrid({ products }) {
+  return (
+    <StyledProductsGrid>
+      {products?.length > 0 &&
+        products.map((product, index) => (
+          <ProductBox key={index} {...product} />
+        ))}
+    </StyledProductsGrid>
+  );
 }

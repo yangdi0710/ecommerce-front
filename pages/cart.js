@@ -5,6 +5,7 @@ import Header from "@/Components/Header";
 import Input from "@/Components/Input";
 import { Title } from "@/Components/NewProducts";
 import Table from "@/Components/Table";
+import StyledTitle from "@/Components/Title";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
@@ -124,7 +125,7 @@ export default function CartPage() {
       <Center>
         <ColumnsWrapper>
           <Box>
-            <Title>Cart</Title>
+            <StyledTitle>Cart</StyledTitle>
             {!cartProducts?.length && <div>Your cart is empty</div>}
             {products?.length > 0 && (
               <Table>
