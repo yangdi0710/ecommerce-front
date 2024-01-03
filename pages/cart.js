@@ -3,7 +3,6 @@ import { CartContext } from "@/Components/CartContext";
 import Center from "@/Components/Center";
 import Header from "@/Components/Header";
 import Input from "@/Components/Input";
-import { Title } from "@/Components/NewProducts";
 import Table from "@/Components/Table";
 import StyledTitle from "@/Components/Title";
 import axios from "axios";

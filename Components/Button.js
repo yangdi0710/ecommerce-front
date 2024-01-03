@@ -10,7 +10,7 @@ export const ButtonStyle = css`
   max-width: 100%;
   text-decoration: none;
   svg {
-    height: 18px;
+    width: 20px;
     margin-right: 6px;
   }
   &:hover {
@@ -58,7 +58,6 @@ export const ButtonStyle = css`
       background-color: transparent;
       color: #000;
       border: 1px solid #000;
-      margin-top: 30px;
       &:hover {
         opacity: 0.7;
       }

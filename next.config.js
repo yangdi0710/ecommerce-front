@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   compiler: {
-    // Enables the styled-components SWC transform
-    styledComponents: true
-  }
-}
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
+};

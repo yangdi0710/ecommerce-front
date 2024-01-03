@@ -1,10 +1,14 @@
+import Button from "@/Components/Button";
+import { CartContext } from "@/Components/CartContext";
 import Center from "@/Components/Center";
 import Header from "@/Components/Header";
 import ProductImages from "@/Components/ProductImages";
 import StyledTitle, { Title } from "@/Components/Title";
 import WhiteBox from "@/Components/WhiteBox";
+import CartIcon from "@/Components/icons/Cart";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Products";
+import { useContext } from "react";
 import styled from "styled-components";
 
 const ColWrapper = styled.div`
@@ -14,7 +18,20 @@ const ColWrapper = styled.div`
   margin-top: 20px;
 `;
 
+const PriceRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin: 30px 0;
+`
+
+const Price = styled.span`
+  font-size: 2rem;
+  font-weight: 700;
+`
+
 export default function ProductPage({ product }) {
+  const {addProduct} = useContext(CartContext)
   return (
     <>
       <Header />
@@ -22,11 +39,18 @@ export default function ProductPage({ product }) {
         <StyledTitle>Product Details</StyledTitle>
         <ColWrapper>
           <WhiteBox>
-            <ProductImages images={product.images}/>
+            <ProductImages images={product.images} />
           </WhiteBox>
           <div>
             <Title>{product.title}</Title>
             {product.description}
+            <PriceRow>
+              <Price>${product.price}</Price>
+              <Button size={"large"} outline black onClick={() => addProduct(product._id)}>
+                <CartIcon />
+                Add to Cart
+              </Button>
+            </PriceRow>
           </div>
         </ColWrapper>
       </Center>
