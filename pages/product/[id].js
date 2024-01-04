@@ -13,9 +13,12 @@ import styled from "styled-components";
 
 const ColWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 30px;
   margin-top: 20px;
+  @media screen and (min-width: 768px) {
+  grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const PriceRow = styled.div`

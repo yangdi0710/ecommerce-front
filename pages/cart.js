@@ -11,9 +11,12 @@ import styled from "styled-components";
 
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.3fr 0.7fr;
+  }
 `;
 const Box = styled.div`
   background-color: #fff;

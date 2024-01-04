@@ -14,21 +14,39 @@ const BgStyled = styled.div`
 const Tittle = styled.h1`
   margin: 0;
   font-weight: normal;
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
+  @media screen and (min-width: 768px){
+    font-size: 2.2rem;
+  }
 `;
 
 const Desc = styled.p`
   color: #c5c5c5;
   font-size: 0.9rem;
+
 `;
 
 const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 48px;
+  grid-template-columns: 1fr;
+  div:nth-child(1){
+    order: 1;
+  }
   img {
-    max-width: 100%;
+    max-width: 70%;
+    display: block;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    div:nth-child(1){
+      order: 0
+    }
+    img {
+      max-width: 100%;
+    }
   }
 `;
 

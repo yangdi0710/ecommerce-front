@@ -67,7 +67,6 @@ export const ButtonStyle = css`
     !props.outline &&
     css`
       background-color: ${primary};
-      border-top: 1px solid ${primary};
       padding-bottom: 10px;
       color: #fff;
       &:hover {
