@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.6.3",
     "dynamic": "^4.2.2",
+    "gzip": "^0.1.0",
     "micro": "^10.0.1",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
@@ -18,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "stripe": "^14.10.0",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.1",
+    "tar": "^6.2.0"
   },
   "devDependencies": {
     "eslint": "^8",
